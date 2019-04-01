@@ -1,10 +1,14 @@
 package bankAccountApp;
 
+import java.util.List;
+
 public class MainBankAccount {
   public static void main(String[] args) {
+    String file = "/Users/sabrinacux/Desktop/CorsoAPP/Musa/JAVA/Java Projects/src/bankAccountApp/NewBankAccounts.csv";
+    
+    /*
     Checking checkAccount1 = new Checking("Tom Wilson", "342974018", 1500);
-    Savings savingsAccount1 = new Savings("Rich Tomson", "673920977", 2500);
-    //read .cvs file and create new accounts based on that data
+    Savings savingsAccount1 = new Savings("Rich Thomson", "673920977", 2500);
 
     savingsAccount1.compound();
 
@@ -15,5 +19,16 @@ public class MainBankAccount {
     //savingsAccount1.deposit(500);
     //savingsAccount1.withdraw(300);
     //savingsAccount1.transfer("Broke Ridge", 200);
+
+    */
+    //read .cvs file and create new accounts based on that data
+    List<String[]> newAccountHolder = utilities.CSV.read(file);
+    for (String[] accountHolder: newAccountHolder) {
+      System.out.println("New account: ");
+      System.out.println(accountHolder[0]);
+      System.out.println(accountHolder[1]);
+      System.out.println(accountHolder[2]);
+      System.out.println(accountHolder[3]);
+    }
   }
 }
