@@ -1,0 +1,19 @@
+package bankAccountApp;
+
+public class MainBankAccount {
+  public static void main(String[] args) {
+    Checking checkAccount1 = new Checking("Tom Wilson", "342974018", 1500);
+    Savings savingsAccount1 = new Savings("Rich Tomson", "673920977", 2500);
+    //read .cvs file and create new accounts based on that data
+
+    savingsAccount1.compound();
+
+    checkAccount1.showInfo();
+    System.out.println("**********************");
+    savingsAccount1.showInfo();
+    //transactions
+    //savingsAccount1.deposit(500);
+    //savingsAccount1.withdraw(300);
+    //savingsAccount1.transfer("Broke Ridge", 200);
+  }
+}
