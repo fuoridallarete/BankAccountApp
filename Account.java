@@ -9,18 +9,21 @@ public abstract class Account implements IBaseRate{
   String accountNumber;
   double rate;
   static int index = 10000;
+
   //constructor to set base properties and initialize the account
   public Account(String name, String ssn, double initDeposit){
     this.name = name;
     this.ssn = ssn;
     this.balance = initDeposit;
-    System.out.println("Name: " + name + " SSN: " + ssn + " Balance: " + balance);
-    
     //set account number
     index++;
     this.accountNumber = setAccountNumber();
-    System.out.println("Account number: " + this.accountNumber);
+    setRate();
   }
+
+  //we are forcing to implement this abstract methods in checking and savings class
+  public abstract void setRate();
+
   //generate account number
   private String setAccountNumber(){
     //get last 2-digits of the ssn
@@ -32,6 +35,40 @@ public abstract class Account implements IBaseRate{
     return lastTwoSsn + uniqueId + randomNumber;
   }
 
-  //list common methods
+  public void compound(){
+    double accruedInterest = balance + rate / 100;
+    balance = balance + accruedInterest;
+    System.out.println("Accrued interest is " + accruedInterest);
+    printBalance();
+  }
+
+  //list common methods - TRANSACTIONS
+
+  public void deposit(double amount){
+    balance = balance + amount;
+    System.out.println("Depositing $" + amount);
+    printBalance();
+  }
+
+  public void withdraw(double amount){
+    balance = balance - amount;
+    System.out.println("Withdrawing $" + amount);
+    printBalance();
+  }
+
+  public void transfer(String toWhere, double amount){
+    balance = balance - amount;
+    System.out.println("Transfe ring $" + amount + " to " + toWhere);
+    printBalance();
+  }
+
+  public void printBalance() {
+    System.out.println("Your balance is now " + balance);
+  }
+
+  public void showInfo(){
+    System.out.println("Name: " + name + " Account Number: " + accountNumber
+        + " Balance: " + balance + " Interest rate: " + rate + "%");
+  }
 
 }
